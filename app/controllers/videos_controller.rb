@@ -11,12 +11,13 @@ class VideosController < ApplicationController
   end
 
   def new
-    @video = current_user.videos.new
+    @video = current_user.my_videos.new
   end
 
   def create
-    @video = current_user.videos.create(video_params)
+    @video = current_user.my_videos.create(video_params)
     if @video.save
+      @video.users << current_user
       flash[:success] = "Video has been uploaded."
       redirect_to(root_path)
     else 
@@ -25,8 +26,20 @@ class VideosController < ApplicationController
     end
   end
 
-  def destroy
+  def update
     @video = current_user.videos.find(params[:id])
+    if @video.update_attributes(video_params)
+      if params[:commit] == 'Share'
+        flash[:success] = "Video is shared to other users."
+      end
+    else
+      flash[:notice] = "Video cannot be shared to other users."
+    end
+    redirect_to(root_path)
+  end
+
+  def destroy
+    @video = current_user.my_videos.find(params[:id])
     if @video.destroy
       flash[:success] = "Video deleted successfully."
     else
@@ -41,6 +54,6 @@ class VideosController < ApplicationController
 
   private
     def video_params
-      params.require(:video).permit(:name, :description, :avatar, :user_id , :category_id)
+      params.require(:video).permit(:name, :description, :avatar, :user_ids => [])
     end
 end
