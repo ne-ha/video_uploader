@@ -35,6 +35,13 @@ class VideosController < ApplicationController
   end
 
   def destroy
+    @video = current_user.videos.find(params[:id])
+    if @video.destroy
+      flash[:success] = "Video deleted successfully."
+    else
+      flash[:notice] = "Video not deleted."
+    end
+    redirect_to(root_path)
   end
 
   private
