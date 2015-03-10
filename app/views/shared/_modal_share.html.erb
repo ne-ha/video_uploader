@@ -1,0 +1,20 @@
+<div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Share To</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for :video, :url => video_path(video.id) ,:html => {:method => "patch" }  do |f| %>
+          <div class="form-group">
+            Share With :
+            <%= collection_check_boxes(:video, :user_ids, User.all, :id, :email)%> 
+          </div>       
+          <%= f.submit "Share", class: "btn btn-default" %>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
