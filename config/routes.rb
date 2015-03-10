@@ -6,8 +6,6 @@ Rails.application.routes.draw do
 
   resources :videos
 
-  resources :categories
-
   root to: "videos#index"
 
   # Example resource route with options:
