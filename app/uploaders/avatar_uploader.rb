@@ -6,7 +6,6 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
-  # process :resize_to_fit => [200, 200]
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -18,7 +17,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  def extension_white_list
+ def extension_white_list
     %w(mov avi mp4 mkv wmv mpg)
   end
 
