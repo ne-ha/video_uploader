@@ -10,11 +10,9 @@
       <th><%= f.label(:description, "Description")%></th>
       <td><%= f.text_field(:description)%></td>
     </tr>
-    <tr><div class="form-group">
-      <th><label for="exampleInputFile">File input</label></th>
-        <td><input type="file" id="exampleInputFile">
-        <p class="help-block">Select a video to upload.</p></td>
-      </div>
+    <tr>
+      <th><%= f.label(:avatar,"File")%></th>
+      <td><%= f.file_field :avatar %>
     </tr>
     <tr>
       <th><%= f.submit 'Upload', class: "btn btn-default"%></th>
