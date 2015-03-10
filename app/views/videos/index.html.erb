@@ -1,1 +1,13 @@
 <%= link_to 'Upload Video', new_video_path , class: "btn btn-default"%>
+
+<table>
+  <tr>
+    <th>Video Title</th>
+    <th>Actions</th>
+  </tr>
+    <% @videos.each do |video|%>
+  <tr>
+    <td><%= video.name %> </td>
+  </tr>
+    <%end%>
+</table>
