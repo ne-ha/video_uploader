@@ -11,7 +11,7 @@
     </tr>
     <tr>
       <th><%= f.label("Category")%></th>
-      <td><%= f.select(:category, Category.all)%></td>
+      <td><%= f.select(:category, Category.all.map{|cat| cat.name})%></td>
     </tr>
     <tr>
       <th><%= f.label(:avatar,"File")%></th>

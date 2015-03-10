@@ -7,7 +7,7 @@
   </tr>
     <% @videos.each do |video|%>
   <tr>
-    <td><%= video.name %> </td>
+    <td><%= video_tag video.avatar, controls: true %> </td>
   </tr>
     <%end%>
 </table>
