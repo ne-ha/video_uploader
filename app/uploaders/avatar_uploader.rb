@@ -17,9 +17,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
- def extension_white_list
-    %w(mov avi mp4 mkv wmv mpg)
-  end
+  def extension_white_list
+    %w(avi mov mkv mpg mpeg mp4 m4v flv)
+  end  
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
