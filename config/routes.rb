@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   
   resources :users
 
-  resources :videos
+  resources :videos do
+    get 'share_video'
+  end
 
   root to: "videos#index"
 
