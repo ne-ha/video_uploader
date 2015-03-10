@@ -1,0 +1,4 @@
+$("#modal").html('<%= escape_javascript(render :partial => "shared/modal_share", 
+  :locals =>{:video => @video, :user => @user}) %>')
+$("#shareModal").modal("show");
+
