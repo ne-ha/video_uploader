@@ -14,6 +14,17 @@ class VideosController < ApplicationController
     @video = current_user.my_videos.new
   end
 
+  def create
+    @video = current_user.my_videos.create(video_params)
+    if @video.save
+      flash[:success] = "Video is created successfully."
+      redirect_to(root_path)
+    else 
+      flash[:notice] = "Video cannot be created."
+      render :new
+    end
+  end
+
   def edit
   end
 
@@ -25,4 +36,9 @@ class VideosController < ApplicationController
 
   def destroy
   end
+
+  private
+    def video_params
+      params.require(:video).permit(:name, :description)
+    end
 end
