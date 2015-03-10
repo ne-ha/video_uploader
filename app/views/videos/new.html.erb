@@ -1,5 +1,6 @@
 <%= link_to 'Back', root_path , class: "btn btn-default"%>
-<%= form_for(@video) do |f|%>
+
+<%= form_for @video, :html => {:multipart => true} do |f| %>
   <table class ="new">
     <tr>
       <th><%= f.label(:name, "Name")%></th>
