@@ -30,6 +30,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'carrierwave'
 gem 'rmagick', '2.13.2'
+gem 'carrierwave-video-thumbnailer'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
