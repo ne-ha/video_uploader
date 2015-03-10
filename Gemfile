@@ -27,7 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+gem 'mini_magick', '3.8.0'
 gem 'carrierwave'
 gem 'rmagick', '2.13.2'
 gem 'carrierwave-video-thumbnailer'
