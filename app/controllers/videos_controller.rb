@@ -15,6 +15,7 @@ class VideosController < ApplicationController
   end
 
   def create
+    # here
     @video = current_user.my_videos.create(video_params)
     if @video.save
       @video.users << current_user
@@ -54,6 +55,6 @@ class VideosController < ApplicationController
 
   private
     def video_params
-      params.require(:video).permit(:name, :description, :avatar, :user_ids => [])
+      params.require(:video).permit(:name, :description, :avatar, :category ,:user_ids => [])
     end
 end
