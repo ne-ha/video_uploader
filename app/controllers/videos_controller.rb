@@ -25,15 +25,6 @@ class VideosController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
-  def delete
-  end
-
   def destroy
     @video = current_user.videos.find(params[:id])
     if @video.destroy
@@ -42,6 +33,10 @@ class VideosController < ApplicationController
       flash[:notice] = "Video not deleted."
     end
     redirect_to(root_path)
+  end
+
+  def share_video
+    @video = Video.find(params[:video_id])
   end
 
   private
