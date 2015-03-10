@@ -9,5 +9,8 @@
   <tr>
     <td><%= video_tag video.avatar, controls: true %> </td>
   </tr>
+  <tr>
+    <td><%= link_to 'Delete', video_path(video), :method => 'delete', data: {confirm: "Are you sure?"}, class: "btn btn-default btn-sm"%> </td>
+  </tr>
     <%end%>
 </table>
