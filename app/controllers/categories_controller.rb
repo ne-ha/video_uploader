@@ -1,4 +1,7 @@
 class CategoriesController < ApplicationController
+
+  has_many :videos
+  
   def index
   end
 
