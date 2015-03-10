@@ -1,5 +1,4 @@
 <%= link_to 'Back', root_path , class: "btn btn-default"%>
-
 <%= form_for(@video) do |f|%>
   <table class ="new">
     <tr>
@@ -11,8 +10,12 @@
       <td><%= f.text_field(:description)%></td>
     </tr>
     <tr>
+      <th><%= f.label("Category")%></th>
+      <td><%= f.select(:category, Category.all)%></td>
+    </tr>
+    <tr>
       <th><%= f.label(:avatar,"File")%></th>
-      <td><%= f.file_field :avatar %>
+      <td><%= f.file_field :avatar %></td>
     </tr>
     <tr>
       <th><%= f.submit 'Upload', class: "btn btn-default"%></th>
