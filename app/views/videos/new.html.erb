@@ -1,15 +1,17 @@
 <%= link_to 'Back', root_path , class: "btn btn-default"%>
 
-<%= form_for(@video) do |f|%>
-  <%= f.label(:name, "Name")%>
-  <%= f.text_field(:name)%>
-  <%= f.label(:description, "Description")%>
-  <%= f.text_field(:description)%>
-  <div class="form-group">
-    <label for="exampleInputFile">File input</label>
-    <input type="file" id="exampleInputFile">
-    <p class="help-block">Select a video to upload.</p>
-  </div>
-<%end%>
+<form class="form-horizontal">
+  <%= form_for(@video) do |f|%>
+    <%= f.label(:name, "Name")%>
+    <%= f.text_field(:name)%>
+    <%= f.label(:description, "Description")%>
+    <%= f.text_field(:description)%>
+    <div class="form-group">
+      <label for="exampleInputFile">File input</label>
+      <input type="file" id="exampleInputFile">
+      <p class="help-block">Select a video to upload.</p>
+    </div>
+  <%end%>
+</form>
 
 
