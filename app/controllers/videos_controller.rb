@@ -11,16 +11,16 @@ class VideosController < ApplicationController
   end
 
   def new
-    @video = current_user.my_videos.new
+    @video = current_user.videos.new
   end
 
   def create
-    @video = current_user.my_videos.create(video_params)
+    @video = current_user.videos.create(video_params)
     if @video.save
-      flash[:success] = "Video is created successfully."
+      flash[:success] = "Video has been uploaded."
       redirect_to(root_path)
     else 
-      flash[:notice] = "Video cannot be created."
+      flash[:notice] = "Video cannot be uploaded."
       render :new
     end
   end
@@ -39,6 +39,6 @@ class VideosController < ApplicationController
 
   private
     def video_params
-      params.require(:video).permit(:name, :description)
+      params.require(:video).permit(:name, :description, :avatar)
     end
 end
