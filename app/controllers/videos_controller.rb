@@ -3,7 +3,7 @@ class VideosController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @videos = current_user.videos
+    @videos = Kaminari.paginate_array(current_user.videos).page(params[:page]).per(5)
   end
 
   def show
