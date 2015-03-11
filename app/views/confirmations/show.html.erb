@@ -2,7 +2,7 @@
 <h2>Set Password for <%= @user.email %></h2>
   <%= devise_error_messages! %>
 
-  <%= f.hidden_field :confirmation_token %>
+  <%= f.hidden_field :confirmation_token, :input_html => { :value => @original_token } %>
 
   <div><%= f.label :password %><br />
   <%= f.password_field :password %></div>
