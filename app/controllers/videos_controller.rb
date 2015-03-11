@@ -15,12 +15,17 @@ class VideosController < ApplicationController
   end
 
   def create
-    # here
     @video = current_user.my_videos.create(video_params)
     if @video.save
       @video.users << current_user
       flash[:success] = "Video has been uploaded."
       redirect_to(root_path)
+    elsif @video.name.empty?
+      flash[:notice] = "Name cannot be empty."
+      render :new
+    elsif @video.avatar.empty?
+      flash[:notice] = "File cannot be empty."
+      render :new
     else 
       flash[:notice] = "Video cannot be uploaded."
       render :new
