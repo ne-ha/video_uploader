@@ -1,10 +1,17 @@
 require 'rails_helper'
 
+include Warden::Test::Helpers
+Warden.test_mode!
+
 describe "log in", :type=> :feature do
 
   before :each do
     User.destroy_all
     user = FactoryGirl.create(:user)
+  end
+
+  after :each do
+    Warden.test_reset!
   end
 
   it "should have an email" do
@@ -14,9 +21,9 @@ describe "log in", :type=> :feature do
 
   it "sigin in " do
     visit "/users/sign_in"
-    within("#new_user") do
+      within("#new_user") do
       fill_in  'Email', :with => 'test@example.com'
-      fill_in  'Password', :with => 'secretpassword'
+      fill_in  'Password', :with => 'aaaaaaaa'
     end
     click_button "Log in"
     expect(page).to have_content "Signed in successfully."
