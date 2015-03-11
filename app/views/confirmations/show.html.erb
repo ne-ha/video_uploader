@@ -1,0 +1,15 @@
+<%= form_for(@user, as: resource_name, url: confirm_user_path) do |f| %>
+<h2>Set Password for <%= @user.email %></h2>
+  <%= devise_error_messages! %>
+
+  <%= f.hidden_field :confirmation_token %>
+
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
+
+  <div><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.submit "Confirm user" %></div>
+<%= render "devise/shared/links" %>
+<% end %>
