@@ -15,11 +15,11 @@
       <td><%= f.select(:category_id, Category.all.map{|cat| cat.name })%></td>
     </tr>
     <tr>
-      <th><%= f.label(:avatar,"File")%></th>
+      <th id="file"><%= f.label(:avatar,"File")%></th>
       <td><%= f.file_field :avatar %></td>
     </tr>
     <tr>
-      <th><%= f.submit 'Upload', class: "btn btn-default"%></th>
+      <th><%= f.submit 'Upload', class: "btn btn-default"%>   <%= link_to 'Cancel', root_path , class: "btn btn-default"%></th>
     </tr>
   </table>
 <%end%>
