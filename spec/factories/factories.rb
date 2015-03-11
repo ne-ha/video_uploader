@@ -4,4 +4,8 @@ FactoryGirl.define do
     password "secretpassword"
     password_confirmation "secretpassword"
   end
+
+  factory :category do
+    name "Music"
+  end
 end
