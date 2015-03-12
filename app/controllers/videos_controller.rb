@@ -1,5 +1,4 @@
 class VideosController < ApplicationController
-
   before_action :authenticate_user!
   
   def index
@@ -59,7 +58,8 @@ class VideosController < ApplicationController
   end
 
   private
-    def video_params
-      params.require(:video).permit(:name, :description, :avatar, :category ,:user_ids => [])
-    end
+  
+  def video_params
+    params.require(:video).permit(:name, :description, :avatar, :category ,:user_ids => [])
+  end
 end

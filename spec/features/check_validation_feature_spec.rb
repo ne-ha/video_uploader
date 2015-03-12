@@ -29,5 +29,4 @@ describe "user", :type=> :feature, :js => true do
     click_button "Upload"
     expect(page).to have_content "Name cannot be empty."
   end
-
 end

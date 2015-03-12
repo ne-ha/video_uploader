@@ -7,5 +7,4 @@ class User < ActiveRecord::Base
   has_many :my_videos, class_name: "Video"
 
   has_and_belongs_to_many :videos
-  
 end

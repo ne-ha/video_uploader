@@ -33,5 +33,4 @@ describe "user", :type=> :feature, :js => true do
     page.accept_confirm
     expect(page).to have_content "Video deleted successfully."
   end
-
 end
