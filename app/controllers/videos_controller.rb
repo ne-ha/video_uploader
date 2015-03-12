@@ -22,8 +22,8 @@ class VideosController < ApplicationController
     elsif @video.name.empty?
       flash[:notice] = "Name cannot be empty."
       render :new
-    elsif @video.avatar.empty?
-      flash[:notice] = "File cannot be empty."
+    elsif @video.avatar.nil?
+      flash[:notice] = "Video cannot be uploaded."
       render :new
     else 
       flash[:notice] = "Video cannot be uploaded."
