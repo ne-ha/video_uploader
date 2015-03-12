@@ -24,15 +24,19 @@ describe VideosController do
         avatar: Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'uploads', 'video', 'avatar', 'Minecraft_ ROCK PAPER SCISSORS OF DEATH GAME - Animation.mp4'))}}.to change{Video.count}.by(1)
     end
 
+  describe 'Delete action' do
     it "should delete a video" do
       @video = FactoryGirl.create(:video)
       @video.user_id = @user.id
       @video.save
       expect{delete :destroy , :id =>@video}.to change{Video.count}.by(-1)
     end
+  end
 
+  describe 'Render new template'do
     it "should render new template" do
       get :new
       expect(response).to render_template("videos/new")
     end
+  end
 end
