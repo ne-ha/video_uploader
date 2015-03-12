@@ -18,11 +18,23 @@ describe VideosController do
     end
   end
 
+  describe 'Create video' do
     it "should upload video" do
       expect{ post :create , video: {name: 'Minecraft', description: 'This is the video of minecraft',
         category_id: @category.id, 
         avatar: Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'uploads', 'video', 'avatar', 'Minecraft_ ROCK PAPER SCISSORS OF DEATH GAME - Animation.mp4'))}}.to change{Video.count}.by(1)
+      expect(flash[:success]).to eq("Video has been uploaded.")
     end
+
+    context "when name is empty" do
+      it "name should not be empty" do
+        expect{ post :create , video: {name: '' , description: 'This is the video of minecraft',
+        category_id: @category.id, 
+        avatar: Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'uploads', 'video', 'avatar', 'Minecraft_ ROCK PAPER SCISSORS OF DEATH GAME - Animation.mp4'))}}.to change{Video.count}.by(0)
+      expect(flash[:notice]).to eq("Name cannot be empty.")
+      end
+    end
+  end
 
   describe 'Delete action' do
     it "should delete a video" do
@@ -30,6 +42,7 @@ describe VideosController do
       @video.user_id = @user.id
       @video.save
       expect{delete :destroy , :id =>@video}.to change{Video.count}.by(-1)
+      expect(flash[:success]).to eq("Video deleted successfully.")
     end
   end
 
