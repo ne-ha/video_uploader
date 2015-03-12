@@ -5,10 +5,6 @@ class VideosController < ApplicationController
     @videos = Kaminari.paginate_array(current_user.videos).page(params[:page]).per(5)
   end
 
-  def show
-    @video = current_user.videos.find(params[:id])
-  end
-
   def new
     @video = current_user.my_videos.new
   end
@@ -33,10 +29,9 @@ class VideosController < ApplicationController
 
   def update
     @video = current_user.videos.find(params[:id])
-    if @video.update_attributes(video_params)
-      if params[:commit] == 'Share'
-        flash[:success] = "Video is shared to other users."
-      end
+    if params[:commit] == 'Share'
+      @video.update_attributes(video_params)
+      flash[:success] = "Video is shared to other users."
     else
       flash[:notice] = "Video cannot be shared to other users."
     end
