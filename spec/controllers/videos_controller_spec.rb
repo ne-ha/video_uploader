@@ -21,10 +21,19 @@ describe VideosController do
   describe 'Create video' do
     context "when all value is given" do
       it "should upload video" do
-          expect{ post :create , video: {name: 'Minecraft', description: 'This is the video of minecraft',
-          category_id: @category.id, 
-          avatar: Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'uploads', 'video', 'avatar', 'Minecraft_ ROCK PAPER SCISSORS OF DEATH GAME - Animation.mp4'))}}.to change{Video.count}.by(1)
-          expect(flash[:success]).to eq("Video has been uploaded.")
+        expect{ post :create , video: {name: 'Minecraft', description: 'This is the video of minecraft',
+        category_id: @category.id, 
+        avatar: Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'uploads', 'video', 'avatar', 'Minecraft_ ROCK PAPER SCISSORS OF DEATH GAME - Animation.mp4'))}}.to change{Video.count}.by(1)
+        expect(flash[:success]).to eq("Video has been uploaded.")
+      end
+    end
+
+    context "when avatar is nil" do
+      it "should upload video" do
+        expect{ post :create , video: {name: 'Minecraft', description: 'This is the video of minecraft',
+        category_id: @category.id, 
+        avatar: nil }}.to change{Video.count}.by(0)
+        expect(flash[:notice]).to eq("Video cannot be uploaded.")
       end
     end
 
@@ -33,7 +42,7 @@ describe VideosController do
         expect{ post :create , video: {name: '' , description: 'This is the video of minecraft',
         category_id: @category.id, 
         avatar: Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'uploads', 'video', 'avatar', 'Minecraft_ ROCK PAPER SCISSORS OF DEATH GAME - Animation.mp4'))}}.to change{Video.count}.by(0)
-      expect(flash[:notice]).to eq("Name cannot be empty.")
+        expect(flash[:notice]).to eq("Name cannot be empty.")
       end
     end
   end
