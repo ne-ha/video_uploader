@@ -19,11 +19,13 @@ describe VideosController do
   end
 
   describe 'Create video' do
-    it "should upload video" do
-      expect{ post :create , video: {name: 'Minecraft', description: 'This is the video of minecraft',
-        category_id: @category.id, 
-        avatar: Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'uploads', 'video', 'avatar', 'Minecraft_ ROCK PAPER SCISSORS OF DEATH GAME - Animation.mp4'))}}.to change{Video.count}.by(1)
-      expect(flash[:success]).to eq("Video has been uploaded.")
+    context "when all value is given" do
+      it "should upload video" do
+          expect{ post :create , video: {name: 'Minecraft', description: 'This is the video of minecraft',
+          category_id: @category.id, 
+          avatar: Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'uploads', 'video', 'avatar', 'Minecraft_ ROCK PAPER SCISSORS OF DEATH GAME - Animation.mp4'))}}.to change{Video.count}.by(1)
+          expect(flash[:success]).to eq("Video has been uploaded.")
+      end
     end
 
     context "when name is empty" do
@@ -50,6 +52,19 @@ describe VideosController do
     it "should render new template" do
       get :new
       expect(response).to render_template("videos/new")
+    end
+  end
+
+  describe 'update' do
+    it "should update the user ids" do
+      @video = FactoryGirl.create(:video)
+      @video.users << @user
+      @another = User.create(email:"example@test.com",
+                            password: "aaaaaaaa",
+                            password_confirmation: "aaaaaaaa",
+                            confirmed_at: Time.now)
+      patch :update, :id => @video.id, :video => {:user_id=> @another.id} , :commit => "Share"
+      expect(flash[:success]).to eq("Video is shared to other users.")
     end
   end
 end
