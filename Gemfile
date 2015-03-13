@@ -35,6 +35,7 @@ gem 'carrierwave-video-thumbnailer'
 # Use Unicorn as the app server
 # gem 'unicorn'
 gem 'formtastic', '~> 3.0'
+gem 'haml', '~> 4.0.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
